@@ -12,6 +12,15 @@
 ## アノテーション
 ### @ResponseBody
 - これをつけたメソッドは戻り値がそのままレスポンスのコンテンツになる
+- JSONやXMLを返す時にも便利
 
 ### @RestController
 - これをつけたcontrollerのメソッドは@responseBodyをつけなくても戻り値がコンテンツになる
+
+### @RequestMapping
+- @controllerのメソッドに追加する
+- アドレスとメソッドを指定して、該当する場合に呼び出される
+```
+// URLが`/send`でmethodがpostの時にアノテーションをつけたメソッドが呼ばれる
+@RequestMapping(value="/send", method="RequestMethod.POST") // methodなしの場合、value=""の表記を省略可能
+```
