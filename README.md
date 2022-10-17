@@ -24,3 +24,14 @@
 // URLが`/send`でmethodがpostの時にアノテーションをつけたメソッドが呼ばれる
 @RequestMapping(value="/send", method="RequestMethod.POST") // methodなしの場合、value=""の表記を省略可能
 ```
+
+### @RequestParam
+- 引数につける
+- 送られてきたフォームのタグのnameを指定し、引数として設定する
+- 送られてきたオブジェクトからパラメータの値を取り出す処理は不要になるから便利
+```
+// text1という名前で送られてきたフォームの値をString型のstrとして引数をセット
+def send(@RequestParam("text1")String str, ModelAndView mav) {
+  // メソッドの内容
+}
+```
