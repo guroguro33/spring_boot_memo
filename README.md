@@ -35,3 +35,35 @@ def send(@RequestParam("text1")String str, ModelAndView mav) {
   // メソッドの内容
 }
 ```
+
+＠RestControllerAdvice
+- REST API用のエラーハンドラの作成用
+- @RestControllerAdviceを付与したクラスを作成し例外処理を行うメソッドを作成
+- 各メソッドには処理したい例外を@ExceptionHandlerアノテーションで指定
+```
+@Slf4j  // ログ出力のためにLombokを使用
+@RestControllerAdvice
+public class ErrorHandlerController {
+
+    @ExceptionHandler({AccessDeniedException.class})  // 処理したい例外
+    @ResponseStatus(HttpStatus.FORBIDDEN)  // レスポンスのステータスコード、ここでは403
+    public ErrorResponse handleException(AccessDeniedException e) {
+        log.error("Error:", e.getMessage());
+        return new ErrorResponse("notAuthorized", "The request was not authorized.");
+    }
+
+    @ExceptionHandler({EmployeeNotFoundException.class})  //  独自例外
+    @ResponseStatus(HttpStatus.NOT_FOUND)  // レスポンスのステータスコード、ここでは404
+    public ErrorResponse handleEmployeeNotFoundException(EmployeeNotFoundException e) {
+        log.error("Error:", e.getMessage());
+        return new ErrorResponse("notFound", "The Employee was not found.");
+    }
+
+    @ExceptionHandler({Exception.class})
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR) // レスポンスのステータスコード、ここでは500
+    public ErrorResponse handleException(Exception e) {
+        log.error("Error:", e.getMessage());
+        return new ErrorResponse("systemError", "System error occurred.");
+    }
+}
+```
