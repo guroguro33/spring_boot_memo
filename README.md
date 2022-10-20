@@ -1,5 +1,7 @@
 # Spring boot 学習メモ
 
+- Spring bootはWebサーバー内蔵方式のため、Tomcatを別途立てる必要はない
+
 ## Thymeleaf　
 - htmlテンプレート
 - th:〇〇で属性に埋め込みを行う
