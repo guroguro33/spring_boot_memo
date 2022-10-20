@@ -75,7 +75,27 @@ public class ErrorHandlerController {
 - 依存注入されるclass用のモック
 
 ### @Mock
+- Mockito
 - 依存注入するclass用のモック
+- 宣言するだけでMockオブジェクトが作成できる
+```
+// クラス変数の上に@Mockをつけることで、mockRepositoryにはモックオブジェクトがセットされる
+@Mock
+UserRepository mockRepository;
+```
+
+### @MockBean
+- Spring Frameworkのアノテーション
+- 通常のMockitoのモックを作成し、それをアプリケーションコンテキスト内に登録する
+- そのため、@MockBeanで生成されたモックオブジェクトは、@Autowiredなど、SpringのDIのメカニズムを通じて注入される
+```
+@MockBean
+UserRepository mockRepository;
+
+// userServiceはmockRepositoryに依存しているためAutowiredで自動注入される
+@Autowired
+UserService userService;
+```
 
 ### @Profile("test")
 - テスト時にのみ呼ばれるメソッド
