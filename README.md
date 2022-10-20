@@ -78,6 +78,27 @@ public class ErrorHandlerController {
 - 依存注入するclass用のモック
 
 ### @Profile("test")
+- テスト時にのみ呼ばれるメソッド
+- テスト用クラス以外で使用する
 
 ### @ActiveProfiles("test")
+- テスト時用のapplication.propartiesを読み込む？
+- とりあえずテスト用クラスではこれを使うようだ
 
+### @Before
+- テスト時に各テストメソッドが呼ばれる前に実行される
+```
+@Before
+    public static void setup() {
+        // 毎テスト前に必要な処理を追加
+    }
+```
+
+### @BeforeClass
+- テスト時にテストクラスが呼ばれる前に1度だけ実行される
+```
+@BeforeClass
+    public static void setup() {
+        // 初回に必要な処理を追加
+    }
+```
