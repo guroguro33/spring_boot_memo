@@ -12,6 +12,20 @@
 
 
 ## アノテーション
+### @SpringbootApplication
+- mainメソッドをもつclassにつけることで、Spring bootで起動することを認識
+- mainメソッドで、下記がお約束
+```
+@SpringBootApplication
+public class Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
+
+}
+```
+
 ### @ResponseBody
 - これをつけたメソッドは戻り値がそのままレスポンスのコンテンツになる
 - JSONやXMLを返す時にも便利
